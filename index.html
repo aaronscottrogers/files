@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Partner-Channel Growth Plan – 12-Month Strategy</title>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bc-blue:   #003087;
+    --bc-teal:   #00A9CE;
+    --bc-gold:   #F5A623;
+    --bc-green:  #00B388;
+    --bc-red:    #E63946;
+    --bc-purple: #7B2D8B;
+    --bc-orange: #FF6B35;
+    --bg-dark:   #0A1628;
+    --bg-card:   #0F2040;
+    --bg-card2:  #132850;
+    --text-main: #E8F0FE;
+    --text-muted:#8BA3C7;
+    --border:    rgba(0,169,206,0.25);
+    --glow:      0 0 20px rgba(0,169,206,0.3);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* ── Tooltip ── */
+  .tooltip {
+    position: fixed;
+    background: rgba(10,22,40,0.97);
+    border: 1px solid var(--bc-teal);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text-main);
+    max-width: 280px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .2s, transform .2s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,169,206,0.3);
+    line-height: 1.6;
+  }
+  .tooltip.visible { opacity: 1; transform: translateY(0); }
+  .tooltip strong { color: var(--bc-teal); display: block; margin-bottom: 4px; font-size: 14px; }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #001a4d 0%, #003087 50%, #004a9f 100%);
+    padding: 48px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--bc-teal);
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,169,206,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(0,179,136,0.1) 0%, transparent 60%);
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(0,169,206,0.2);
+    border: 1px solid var(--bc-teal);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bc-teal);
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: clamp(22px, 3.5vw, 38px);
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 2px 20px rgba(0,169,206,0.4);
+    margin-bottom: 10px;
+  }
+  .header h1 span { color: var(--bc-teal); }
+  .header p {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .header-countries {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    margin-top: 20px; position: relative;
+  }
+  .country-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    transition: all .3s;
+    cursor: default;
+  }
+  .country-pill:hover {
+    background: rgba(0,169,206,0.25);
+    border-color: var(--bc-teal);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  /* ── Layout ── */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 48px 0; }
+  .section-title {
+    font-size: 22px; font-weight: 700;
+    color: var(--bc-teal);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--bc-teal), transparent);
+  }
+  .section-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; }
+
+  /* ── KPI Cards ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 0;
+  }
+  .kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .35s ease,
+                border-color .35s ease;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent, var(--bc-teal));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s ease;
+  }
+  .kpi-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, var(--accent-glow, rgba(0,169,206,0.08)) 0%, transparent 60%);
+    opacity: 0; transition: opacity .35s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), var(--glow);
+    border-color: var(--accent, var(--bc-teal));
+  }
+  .kpi-card:hover::before { transform: scaleX(1); }
+  .kpi-card:hover::after { opacity: 1; }
+  .kpi-icon {
+    font-size: 28px; margin-bottom: 12px;
+    display: block;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .kpi-card:hover .kpi-icon { transform: scale(1.2) rotate(-5deg); }
+  .kpi-value {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    color: var(--accent, var(--bc-teal));
+    line-height: 1;
+    margin-bottom: 6px;
+    transition: color .3s;
+  }
+  .kpi-label {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .kpi-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 3px 8px;
+    font-size: 11px; color: var(--text-muted);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── Country Bars ── */
+  .country-bars { display: flex; flex-direction: column; gap: 14px; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 90px;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+  }
+  .bar-label {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-main);
+    text-align: right;
+    transition: color .3s;
+  }
+  .bar-row:hover .bar-label { color: var(--bc-teal); }
+  .bar-track {
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px; height: 36px;
+    overflow: hidden; position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .bar-fill {
+    height: 100%; border-radius: 8px;
+    display: flex; align-items: center; padding-left: 12px;
+    font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9);
+    width: 0;
+    transition: width 1.2s cubic-bezier(.25,.46,.45,.94);
+    position: relative; overflow: hidden;
+  }
+  .bar-fill::after {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left .6s ease .8s;
+  }
+  .bar-row:hover .bar-fill::after { left: 150%; }
+  .bar-row:hover .bar-fill { filter: brightness(1.15); }
+  .bar-meta {
+    font-size: 12px; color: var(--text-muted);
+    text-align: left;
+    transition: color .3s;
+  }
+  .bar-row:hover .bar-meta { color: var(--text-main); }
+
+  /* ── Feasibility Matrix ── */
+  .matrix-wrap { overflow-x: auto; border-radius: 16px; }
+  .matrix-table {
+    width: 100%; border-collapse: separate; border-spacing: 3px;
+    min-width: 700px;
+  }
+  .matrix-table th {
+    background: rgba(0,48,135,0.6);
+    color: var(--bc-teal);
+    font-size: 12px; font-weight: 700;
+    padding: 10px 8px; text-align: center;
+    border-radius: 6px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .matrix-table th:first-child { text-align: left; padding-left: 14px; }
+  .matrix-table td {
+    padding: 10px 8px; text-align: center;
+    border-radius: 6px; font-size: 13px; font-weight: 700;
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .25s ease,
+                filter .25s ease;
+    position: relative;
+  }
+  .matrix-table td:first-child {
+    text-align: left; padding-left: 14px;
+    font-weight: 600; font-size: 13px;
+    background: rgba(0,48,135,0.3);
+    color: var(--text-main);
+  }
+  .matrix-table td:hover:not(:first-child) {
+    transform: scale(1.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 10; position: relative;
+    filter: brightness(1.2);
+  }
+  .cell-H   { background: rgba(0,179,136,0.25); color: #00E5B0; border: 1px solid rgba(0,179,136,0.4); }
+  .cell-M   { background: rgba(245,166,35,0.2);  color: #FFD166; border: 1px solid rgba(245,166,35,0.35); }
+  .cell-L   { background: rgba(139,163,199,0.15); color: #8BA3C7; border: 1px solid rgba(139,163,199,0.25); }
+  .cell-BLK { background: rgba(230,57,70,0.2);   color: #FF6B7A; border: 1px solid rgba(230,57,70,0.35); font-size: 10px; letter-spacing: .5px; }
+
+  /* ── Roadmap ── */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .roadmap-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .35s;
+    cursor: default;
+  }
+  .roadmap-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    border-color: var(--q-color);
+  }
+  .roadmap-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--q-color);
+  }
+  .q-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--q-color);
+    margin-bottom: 6px;
+  }
+  .q-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .q-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+  .q-items { list-style: none; }
+  .q-items li {
+    font-size: 13px; color: var(--text-muted);
+    padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; gap: 8px; align-items: flex-start;
+    transition: color .3s;
+  }
+  .roadmap-card:hover .q-items li { color: var(--text-main); }
+  .q-items li::before { content: '→'; color: var(--q-color); flex-shrink: 0; }
+
+  /* ── Country Strategy Cards ── */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .strategy-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .35s;
+    cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .strategy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    border-color: var(--s-color, var(--bc-teal));
+  }
+  .strategy-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--s-color, var(--bc-teal));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s ease;
+  }
+  .strategy-card:hover::after { transform: scaleX(1); }
+  .s-flag { font-size: 28px; margin-bottom: 10px; display: block; }
+  .s-country { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .s-revenue { font-size: 22px; font-weight: 800; color: var(--s-color, var(--bc-teal)); margin-bottom: 10px; }
+  .s-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .s-tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    font-weight: 600;
+  }
+  .tag-green  { background: rgba(0,179,136,0.2); color: #00E5B0; border: 1px solid rgba(0,179,136,0.3); }
+  .tag-red    { background: rgba(230,57,70,0.2);  color: #FF6B7A; border: 1px solid rgba(230,57,70,0.3); }
+  .tag-yellow { background: rgba(245,166,35,0.2); color: #FFD166; border: 1px solid rgba(245,166,35,0.3); }
+  .tag-blue   { background: rgba(0,169,206,0.2);  color: var(--bc-teal); border: 1px solid rgba(0,169,206,0.3); }
+  .s-stat-row { display: flex; gap: 12px; }
+  .s-stat { flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; text-align: center; }
+  .s-stat-val { font-size: 15px; font-weight: 700; color: var(--s-color, var(--bc-teal)); }
+  .s-stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .s-target { margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+  .s-target span { color: var(--bc-green); font-weight: 700; }
+
+  /* ── Competitor Section ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .comp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .35s;
+    cursor: default;
+  }
+  .comp-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    border-color: var(--c-color);
+  }
+  .comp-name { font-size: 16px; font-weight: 700; color: var(--c-color); margin-bottom: 12px; }
+  .comp-features { list-style: none; }
+  .comp-features li {
+    font-size: 13px; color: var(--text-muted);
+    padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; gap: 8px;
+    transition: color .3s;
+  }
+  .comp-card:hover .comp-features li { color: var(--text-main); }
+  .comp-features li::before { content: '✓'; color: var(--c-color); }
+
+  /* ── Policy Tailwinds ── */
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .policy-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .35s;
+    cursor: default;
+  }
+  .policy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    border-color: var(--p-color);
+  }
+  .policy-icon { font-size: 32px; margin-bottom: 12px; }
+  .policy-title { font-size: 15px; font-weight: 700; color: var(--p-color); margin-bottom: 8px; }
+  .policy-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; transition: color .3s; }
+  .policy-card:hover .policy-desc { color: var(--text-main); }
+
+  /* ── CTA Section ── */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(0,48,135,0.5), rgba(0,74,159,0.3));
+    border: 1px solid rgba(0,169,206,0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin: 48px 0;
+  }
+  .cta-section h2 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .cta-section p { color: var(--text-muted); margin-bottom: 28px; }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; text-align: left;
+  }
+  .cta-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 16px;
+    transition: all .3s;
+  }
+  .cta-item:hover {
+    background: rgba(0,169,206,0.1);
+    border-color: var(--bc-teal);
+    transform: translateY(-3px);
+  }
+  .cta-week { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--bc-teal); text-transform: uppercase; margin-bottom: 6px; }
+  .cta-action { font-size: 13px; color: var(--text-main); }
+
+  /* ── Footer ── */
+  .footer {
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    text-align: center;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── Animated number ── */
+  .animated-num { display: inline-block; }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-muted);
+  }
+  .legend-dot {
+    width: 28px; height: 20px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--bc-blue); border-radius: 3px; }
+
+  /* ── Animations ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeInUp .6s ease both; }
+  .fade-in-1 { animation-delay: .1s; }
+  .fade-in-2 { animation-delay: .2s; }
+  .fade-in-3 { animation-delay: .3s; }
+  .fade-in-4 { animation-delay: .4s; }
+
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(0,169,206,0.4); }
+    70%  { box-shadow: 0 0 0 12px rgba(0,169,206,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,169,206,0); }
+  }
+  .pulse { animation: pulse-ring 2.5s infinite; }
+</style>
+</head>
+<body>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-badge">FY25-26 Evidence-Based Strategy</div>
+  <h1>IELTS Partner-Channel <span>Growth Plan</span></h1>
+  <p>12-Month Roadmap · £208.1M Baseline · +20% Uplift Target · 8 Markets</p>
+  <div class="header-countries">
+    <span class="country-pill">🇨🇳 China</span>
+    <span class="country-pill">🇧🇩 Bangladesh</span>
+    <span class="country-pill">🇻🇳 Vietnam</span>
+    <span class="country-pill">🇦🇪 UAE</span>
+    <span class="country-pill">🇵🇰 Pakistan</span>
+    <span class="country-pill">🇸🇦 Saudi Arabia</span>
+    <span class="country-pill">🇹🇭 Thailand</span>
+    <span class="country-pill">🇪🇬 Egypt</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 1 – KPI CARDS
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Executive Summary</div>
+    <div class="section-sub">Verified FY25-26 baseline anchors all growth projections — hover each card for detail</div>
+    <div class="kpi-grid">
+
+      <div class="kpi-card fade-in fade-in-1"
+           style="--accent:#00A9CE; --accent-glow:rgba(0,169,206,0.1);"
+           data-tip-title="Total Revenue Baseline"
+           data-tip="£208.1M verified FY25-26 total revenue across all 8 countries. China alone contributes £157.5M (76%). Egypt revenue is TBD pending internal validation. All figures sourced from verified internal files.">
+        <span class="kpi-icon">💷</span>
+        <div class="kpi-value">£208.1M</div>
+        <div class="kpi-label">FY25-26 Total Revenue<br>8 Countries Combined</div>
+        <div class="kpi-badge">Verified</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-2"
+           style="--accent:#00B388; --accent-glow:rgba(0,179,136,0.1);"
+           data-tip-title="Total B2B Volume"
+           data-tip="321,898 total verified tests across B2B RP, ITC, PTP, and China Referral channels. This is the confirmed baseline used for all growth modelling. Breakdown: China 210,577 · Bangladesh 58,121 · Vietnam 30,945 · Pakistan 14,971 · UAE 6,886 B2B + 13,103 ITC · Others.">
+        <span class="kpi-icon">📊</span>
+        <div class="kpi-value">321,898</div>
+        <div class="kpi-label">Total Verified Test Volume<br>B2B RP + ITC + PTP + Referral</div>
+        <div class="kpi-badge">Baseline</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-3"
+           style="--accent:#F5A623; --accent-glow:rgba(245,166,35,0.1);"
+           data-tip-title="China Referral Volume"
+           data-tip="210,577 combined B2B RP + Affiliate referral tests in China. These cannot be disaggregated by channel due to NEEA reporting structure. China operates exclusively within the NEEA framework — no ITC or PTP channels permitted.">
+        <span class="kpi-icon">🇨🇳</span>
+        <div class="kpi-value">210,577</div>
+        <div class="kpi-label">China Referral Volume<br>B2B + Affiliate Combined</div>
+        <div class="kpi-badge">NEEA Only</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-4 pulse"
+           style="--accent:#7B2D8B; --accent-glow:rgba(123,45,139,0.1);"
+           data-tip-title="Growth Target"
+           data-tip="+20% uplift target applied uniformly across all 8 markets via cost-neutral partner enablement levers. This translates to ~64,380 additional tests. Target is a planning assumption subject to Q3 pilot validation before full-scale rollout.">
+        <span class="kpi-icon">🚀</span>
+        <div class="kpi-value">+20%</div>
+        <div class="kpi-label">Target Uplift via<br>Cost-Neutral Partner Enablement</div>
+        <div class="kpi-badge">Target</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-1"
+           style="--accent:#FF6B35; --accent-glow:rgba(255,107,53,0.1);"
+           data-tip-title="Growth Opportunities"
+           data-tip="15 identified growth opportunities split across 8 volume-growth levers (B2B RP expansion, Affiliate activation, ITC pilots, PTP optimization, China funnel, portal enhancements, cross-channel referrals, seasonal campaigns) and 7 revenue/enablement levers (training, GEL platform, satisfaction, incentives, co-marketing, self-service, compliance).">
+        <span class="kpi-icon">🎯</span>
+        <div class="kpi-value">15</div>
+        <div class="kpi-label">Growth Opportunities<br>Across 4 Channel Types</div>
+        <div class="kpi-badge">Mapped</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-2"
+           style="--accent:#E63946; --accent-glow:rgba(230,57,70,0.1);"
+           data-tip-title="UAE ITC Advantage"
+           data-tip="UAE is the ONLY market with a verified ITC (IELTS Test Centre) baseline of 13,103 tests. This gives UAE a unique multi-channel advantage: B2B RP (6,886) + ITC (13,103) + PTP (TBD). PTP is a logical extension of the existing ITC delivery infrastructure.">
+        <span class="kpi-icon">🏆</span>
+        <div class="kpi-value">13,103</div>
+        <div class="kpi-label">UAE ITC Tests — Only Market<br>with Verified ITC Baseline</div>
+        <div class="kpi-badge">UAE Only</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-3"
+           style="--accent:#00A9CE; --accent-glow:rgba(0,169,206,0.1);"
+           data-tip-title="12-Month Phases"
+           data-tip="Four sequential phases: Q1 Foundation (data validation, partner audit, compliance gaps), Q2 Enablement (portal deployment, training rollout, incentive structures), Q3 Pilot (ITC Thailand, PTP UAE, Affiliate Saudi/Egypt), Q4 Scale (proven levers across all compliant markets).">
+        <span class="kpi-icon">📅</span>
+        <div class="kpi-value">4</div>
+        <div class="kpi-label">Roadmap Phases<br>Foundation → Scale</div>
+        <div class="kpi-badge">12 Months</div>
+      </div>
+
+      <div class="kpi-card fade-in fade-in-4"
+           style="--accent:#00B388; --accent-glow:rgba(0,179,136,0.1);"
+           data-tip-title="Channel Types"
+           data-tip="Four partner channel types: B2B RP (Registered Partners) — active in all markets; ITC (IELTS Test Centres) — only UAE verified; PTP (Preparation Test Partners) — UAE and Thailand under evaluation; Affiliate — active in China, high potential in Saudi Arabia and Egypt.">
+        <span class="kpi-icon">🔗</span>
+        <div class="kpi-value">4</div>
+        <div class="kpi-label">Channel Types<br>ITC · B2B RP · PTP · Affiliate</div>
+        <div class="kpi-badge">Multi-Channel</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 2 – COUNTRY REVENUE BREAKDOWN
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Country Revenue & Volume Breakdown</div>
+    <div class="section-sub">Hover each bar for detailed channel data and strategic context</div>
+    <div class="country-bars" id="countryBars">
+
+      <div class="bar-row"
+           data-tip-title="🇨🇳 China — Revenue Dominant"
+           data-tip="£157.5M revenue (76% of 8-country total). 210,577 combined B2B RP + Affiliate tests. Operates exclusively under NEEA framework — NO ITC or PTP permitted. Target: +20% uplift to 252,692 tests via funnel optimisation, partner training, and Affiliate co-marketing within NEEA compliance.">
+        <div class="bar-label">🇨🇳 China</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#003087,#00A9CE);" data-width="76%">76% of total</div>
+        </div>
+        <div class="bar-meta">£157.5M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇧🇩 Bangladesh — B2B RP Leader"
+           data-tip="£11.5M revenue. 58,121 B2B RP tests — highest B2B RP volume globally among the 8 markets. Security restrictions block ITC and PTP channels entirely. Target: +20% uplift to 69,745 tests via partner depth, tiered incentives (Bronze to Platinum Plus), and GEL platform access.">
+        <div class="bar-label">🇧🇩 Bangladesh</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#00B388,#00E5B0);" data-width="5.5%">£11.5M</div>
+        </div>
+        <div class="bar-meta">£11.5M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇻🇳 Vietnam — Scaling Opportunity"
+           data-tip="£11.3M revenue. 30,945 B2B RP tests with no ITC or PTP activity documented. No channel restrictions — all partner channels technically viable. Target: +20% uplift to 37,134 tests via B2B RP network scaling, Affiliate pilot, and training portfolio deployment.">
+        <div class="bar-label">🇻🇳 Vietnam</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#7B2D8B,#A855F7);" data-width="5.4%">£11.3M</div>
+        </div>
+        <div class="bar-meta">£11.3M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇦🇪 UAE — Multi-Channel Advantage"
+           data-tip="£10.6M revenue. Only market with verified ITC baseline (13,103 tests) + 6,886 B2B RP tests. PTP is TBD pending data validation. Target: +20% uplift via ITC network expansion, PTP pilot at corporate/university clients, and B2B RP experience optimisation.">
+        <div class="bar-label">🇦🇪 UAE</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#F5A623,#FFD166);" data-width="5.1%">£10.6M</div>
+        </div>
+        <div class="bar-meta">£10.6M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇵🇰 Pakistan — Constrained Focus"
+           data-tip="£7.4M revenue. 14,971 B2B RP tests — zero ITC/PTP due to high-security restrictions. Target: +20% uplift to 17,965 tests via focused B2B RP partner enablement, satisfaction pain point resolution, enhanced training, and co-marketing tools.">
+        <div class="bar-label">🇵🇰 Pakistan</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#E63946,#FF6B7A);" data-width="3.6%">£7.4M</div>
+        </div>
+        <div class="bar-meta">£7.4M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇸🇦 Saudi Arabia — Nascent Market"
+           data-tip="£6.9M revenue despite only 1,106 B2B RP tests — indicating strong revenue-per-test economics. High Affiliate feasibility. Target: +20% uplift to 1,327 tests via Affiliate network launch, 5-10 new B2B RP university partners, and localised co-marketing campaigns.">
+        <div class="bar-label">🇸🇦 Saudi Arabia</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#00A9CE,#00D4FF);" data-width="3.3%">£6.9M</div>
+        </div>
+        <div class="bar-meta">£6.9M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇹🇭 Thailand — Multi-Channel Exploration"
+           data-tip="£2.9M revenue. 1,193 B2B RP tests, PTP volume TBD, no ITC activity documented. ITC pilot has medium feasibility pending regulatory clearance. Target: +20% uplift to 1,432 tests via B2B RP expansion in Bangkok, ITC pilot assessment, and PTP venue baseline optimisation.">
+        <div class="bar-label">🇹🇭 Thailand</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#FF6B35,#FF9A6C);" data-width="1.4%">£2.9M</div>
+        </div>
+        <div class="bar-meta">£2.9M</div>
+      </div>
+
+      <div class="bar-row"
+           data-tip-title="🇪🇬 Egypt — Early-Stage Entry"
+           data-tip="Revenue TBD pending internal validation. Only 223 B2B RP tests — smallest baseline among 8 countries. High Affiliate feasibility. Target: +20% uplift to 268 tests via Affiliate pilot (10-15 agents), zero-cost onboarding, and co-marketing bundles. Revenue validation is Week 3-4 priority.">
+        <div class="bar-label">🇪🇬 Egypt</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="background:linear-gradient(90deg,#8BA3C7,#B0C4DE);" data-width="0.5%">TBD</div>
+        </div>
+        <div class="bar-meta">TBD</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 3 – FEASIBILITY MATRIX
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">15 Growth Opportunities — Feasibility Matrix</div>
+    <div class="section-sub">Hover any cell for detailed context on feasibility rating, constraints, and recommended actions</div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot cell-H">H</div> High — Aligned channels, no barriers</div>
+      <div class="legend-item"><div class="legend-dot cell-M">M</div> Medium — Requires validation/pilot</div>
+      <div class="legend-item"><div class="legend-dot cell-L">L</div> Low — Small baseline/nascent market</div>
+      <div class="legend-item"><div class="legend-dot cell-BLK" style="font-size:9px;">BLK</div> Blocked — Regulatory/security restrictions</div>
+    </div>
+
+    <div class="matrix-wrap">
+      <table class="matrix-table" id="matrixTable">
+        <thead>
+          <tr>
+            <th>Opportunity</th>
+            <th>🇧🇩 BD</th>
+            <th>🇻🇳 VN</th>
+            <th>🇵🇰 PK</th>
+            <th>🇸🇦 SA</th>
+            <th>🇦🇪 UAE</th>
+            <th>🇹🇭 TH</th>
+            <th>🇪🇬 EG</th>
+            <th>🇨🇳 CN</th>
+          </tr>
+        </thead>
+        <tbody id="matrixBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 4 – COUNTRY STRATEGY CARDS
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Country-by-Country Strategy</div>
+    <div class="section-sub">Hover each card to reveal strategic details</div>
+    <div class="strategy-grid">
+
+      <div class="strategy-card" style="--s-color:#00A9CE;">
+        <span class="s-flag">🇨🇳</span>
+        <div class="s-country">China</div>
+        <div class="s-revenue">£157.5M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-blue">NEEA Exclusive</span>
+          <span class="s-tag tag-red">No ITC/PTP</span>
+          <span class="s-tag tag-green">76% of Total</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">210,577</div><div class="s-stat-lbl">Current Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">252,692</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Partner training · Affiliate co-marketing · Funnel optimisation</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#00B388;">
+        <span class="s-flag">🇧🇩</span>
+        <div class="s-country">Bangladesh</div>
+        <div class="s-revenue">£11.5M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-green">Highest B2B RP</span>
+          <span class="s-tag tag-red">No ITC/PTP</span>
+          <span class="s-tag tag-yellow">Security Risk</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">58,121</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">69,745</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Tiered incentives · GEL platform · Co-marketing assets</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#7B2D8B;">
+        <span class="s-flag">🇻🇳</span>
+        <div class="s-country">Vietnam</div>
+        <div class="s-revenue">£11.3M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-green">No Restrictions</span>
+          <span class="s-tag tag-blue">All Channels Viable</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">30,945</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">37,134</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Scale B2B RP · Affiliate pilot · Training portfolio</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#F5A623;">
+        <span class="s-flag">🇦🇪</span>
+        <div class="s-country">UAE</div>
+        <div class="s-revenue">£10.6M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-green">ITC Verified</span>
+          <span class="s-tag tag-blue">Multi-Channel</span>
+          <span class="s-tag tag-yellow">PTP TBD</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">19,989</div><div class="s-stat-lbl">Total Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">+20%</div><div class="s-stat-lbl">Target Uplift</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Expand ITC · Launch PTP pilot · Optimise B2B RP</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#E63946;">
+        <span class="s-flag">🇵🇰</span>
+        <div class="s-country">Pakistan</div>
+        <div class="s-revenue">£7.4M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-red">No ITC/PTP</span>
+          <span class="s-tag tag-yellow">Security Volatile</span>
+          <span class="s-tag tag-blue">B2B RP Only</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">14,971</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">17,965</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Pain point resolution · Training · Co-marketing tools</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#00D4FF;">
+        <span class="s-flag">🇸🇦</span>
+        <div class="s-country">Saudi Arabia</div>
+        <div class="s-revenue">£6.9M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-green">High Affiliate Potential</span>
+          <span class="s-tag tag-yellow">Nascent Market</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">1,106</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">1,327</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Launch Affiliate · 5-10 university partners · Local campaigns</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#FF6B35;">
+        <span class="s-flag">🇹🇭</span>
+        <div class="s-country">Thailand</div>
+        <div class="s-revenue">£2.9M</div>
+        <div class="s-tags">
+          <span class="s-tag tag-yellow">ITC Pending Clearance</span>
+          <span class="s-tag tag-blue">PTP TBD</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">1,193</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">1,432</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Bangkok B2B RP · ITC feasibility · PTP baseline</span></div>
+      </div>
+
+      <div class="strategy-card" style="--s-color:#8BA3C7;">
+        <span class="s-flag">🇪🇬</span>
+        <div class="s-country">Egypt</div>
+        <div class="s-revenue">TBD</div>
+        <div class="s-tags">
+          <span class="s-tag tag-green">High Affiliate Potential</span>
+          <span class="s-tag tag-yellow">Revenue TBD</span>
+        </div>
+        <div class="s-stat-row">
+          <div class="s-stat"><div class="s-stat-val">223</div><div class="s-stat-lbl">B2B RP Tests</div></div>
+          <div class="s-stat"><div class="s-stat-val">268</div><div class="s-stat-lbl">Target Tests</div></div>
+        </div>
+        <div class="s-target">Actions: <span>Validate revenue · Affiliate pilot (10-15 agents) · Zero-cost onboarding</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 5 – 12-MONTH ROADMAP
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">12-Month Roadmap — Foundation to Scale</div>
+    <div class="section-sub">Four sequential phases building from data validation to full market rollout</div>
+    <div class="roadmap-grid">
+
+      <div class="roadmap-card" style="--q-color:#00A9CE;">
+        <div class="q-label">Q1 · Months 1–3</div>
+        <div class="q-title">Foundation</div>
+        <div class="q-sub">Data validation & partner audit</div>
+        <ul class="q-items">
+          <li>Complete baseline data validation (Egypt revenue, Thailand/UAE PTP)</li>
+          <li>Conduct partner satisfaction deep-dive analysis</li>
+          <li>Audit compliance gaps vs UK AQF standards</li>
+          <li>Select pilot countries and partner cohort</li>
+          <li>Finalise cost-neutral lever portfolio</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card" style="--q-color:#00B388;">
+        <div class="q-label">Q2 · Months 4–6</div>
+        <div class="q-title">Enablement</div>
+        <div class="q-sub">Training & portal deployment</div>
+        <ul class="q-items">
+          <li>Deploy partner portal enhancements</li>
+          <li>Roll out Global IELTS Teacher Training portfolio</li>
+          <li>Launch GEL IELTS Educator platform adoption</li>
+          <li>Activate co-marketing asset distribution</li>
+          <li>Implement tiered incentive structures</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card" style="--q-color:#F5A623;">
+        <div class="q-label">Q3 · Months 7–9</div>
+        <div class="q-title">Pilot</div>
+        <div class="q-sub">Controlled channel testing</div>
+        <ul class="q-items">
+          <li>Test ITC model in Thailand (regulatory clearance required)</li>
+          <li>Pilot PTP venue partnerships in UAE</li>
+          <li>Launch Affiliate networks in Saudi Arabia & Egypt</li>
+          <li>Measure partner engagement & conversion lift</li>
+          <li>Validate +20% uplift assumptions</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card" style="--q-color:#7B2D8B;">
+        <div class="q-label">Q4 · Months 10–12</div>
+        <div class="q-title">Scale</div>
+        <div class="q-sub">Rollout proven levers</div>
+        <ul class="q-items">
+          <li>Roll out proven levers across all compliant countries</li>
+          <li>Expand successful pilots to additional markets</li>
+          <li>Optimise based on Q3 learnings</li>
+          <li>Prepare FY27 business case with validated ROI</li>
+          <li>Establish ongoing governance & reporting cadence</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 6 – COMPETITOR BENCHMARK
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Competitor Benchmark — Partner Program Standards</div>
+    <div class="section-sub">Partner enablement via portals, training, and incentives is table stakes — differentiation requires execution excellence</div>
+    <div class="comp-grid">
+
+      <div class="comp-card" style="--c-color:#003087;">
+        <div class="comp-name">🎓 British Council IELTS</div>
+        <ul class="comp-features">
+          <li>Tiered benefits: Bronze / Silver / Platinum / Platinum Plus</li>
+          <li>Marketing assets & preparation resources</li>
+          <li>Teacher training seminars & online registration</li>
+          <li>Official IELTS Registration Centre status + branding</li>
+          <li>Annual membership with minimum referral thresholds</li>
+        </ul>
+      </div>
+
+      <div class="comp-card" style="--c-color:#0078D4;">
+        <div class="comp-name">📘 Pearson PTE Partners</div>
+        <ul class="comp-features">
+          <li>Portal access for location setup & user management</li>
+          <li>Test taker booking & special arrangements</li>
+          <li>Self-service operational tools</li>
+          <li>Volume-based incentive structures</li>
+        </ul>
+      </div>
+
+      <div class="comp-card" style="--c-color:#E63946;">
+        <div class="comp-name">📗 ETS Institution Portal</div>
+        <ul class="comp-features">
+          <li>Secure on-demand GRE & TOEFL score data access</li>
+          <li>Graduate Search Service recruitment tools</li>
+          <li>Agent portal self-service capabilities</li>
+          <li>Training resources & volume incentives</li>
+        </ul>
+      </div>
+
+      <div class="comp-card" style="--c-color:#00B388;">
+        <div class="comp-name">📙 Cambridge Learning Partner</div>
+        <ul class="comp-features">
+          <li>Strategic NEEA partnership in China</li>
+          <li>Examinations from primary to professional levels</li>
+          <li>Agent portal self-service model</li>
+          <li>Training resources & volume-based incentives</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 7 – POLICY TAILWINDS
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Governance & Policy Tailwinds</div>
+    <div class="section-sub">External policy drivers creating sustained demand across target markets</div>
+    <div class="policy-grid">
+
+      <div class="policy-card" style="--p-color:#003087;">
+        <div class="policy-icon">🇬🇧</div>
+        <div class="policy-title">UK Agent Quality Framework (AQF)</div>
+        <div class="policy-desc">All UK education providers on Student sponsor register must manage agents in compliance with National Code of Ethical Practice. IELTS alignment positions British Council as governance leader vs competitors lacking formal compliance frameworks.</div>
+      </div>
+
+      <div class="policy-card" style="--p-color:#E63946;">
+        <div class="policy-icon">📋</div>
+        <div class="policy-title">UK Skilled Worker Visa — B2 Uplift</div>
+        <div class="policy-desc">English requirement raised to B2 level (CEFR) effective January 2026 for new applicants, up from B1. Translates to IELTS score of 5.5 minimum in all four components, creating a clear and growing preparation market.</div>
+      </div>
+
+      <div class="policy-card" style="--p-color:#FF6B35;">
+        <div class="policy-icon">🍁</div>
+        <div class="policy-title">Canada Express Entry</div>
+        <div class="policy-desc">IELTS General Training accepted for permanent residence with results valid for 2 years. IELTS remains dominant over CELPIP and TEF Canada alternatives, driving sustained demand particularly in South Asian markets.</div>
+      </div>
+
+      <div class="policy-card" style="--p-color:#00B388;">
+        <div class="policy-icon">🦘</div>
+        <div class="policy-title">Australia Skilled Migration</div>
+        <div class="policy-desc">Competent English requirements for skilled migration recognise IELTS as the primary assessment tool, driving sustained demand across all 8 target markets, particularly Bangladesh, Pakistan, and Vietnam.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 8 – CALL TO ACTION
+═══════════════════════════════════════════════════════════ -->
+<div class="container">
+  <div class="cta-section">
+    <h2>📋 Call to Action — Next Steps</h2>
+    <p>Approvals needed and immediate actions to launch the 12-month programme</p>
+    <div class="cta-grid">
+      <div class="cta-item">
+        <div class="cta-week">Week 1–2</div>
+        <div class="cta-action">✅ Approve 12-month roadmap with four-phase progression<br>✅ Approve +20% uplift target as planning assumption<br>✅ Approve cost-neutral approach leveraging existing assets</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-week">Week 1–2</div>
+        <div class="cta-action">👤 Assign executive sponsor for programme governance<br>👤 Assign country & channel owners for 8 markets<br>👤 Establish cross-functional coordination structure</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-week">Week 3–4</div>
+        <div class="cta-action">🔍 Complete data validation for Egypt & Thailand/UAE PTP<br>🔍 Conduct partner satisfaction analysis<br>🔍 Launch compliance audit vs UK AQF standards</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-week">Month 2</div>
+        <div class="cta-action">🎯 Select 3–5 pilot partners across 4 target markets<br>🎯 Finalise pilot country selection<br>📊 Establish monthly governance dashboard for tracking</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<div class="footer">
+  <p>IELTS Partner-Channel Growth Plan · FY25-26 Corrected Version · All data sourced from verified internal files · Egypt revenue TBD pending internal validation</p>
+  <p style="margin-top:6px;">References: British Council IELTS Partnership Programme [1][2][3] · Pearson PTE Partners [4] · ETS Institution Portal [5] · UK AQF [6][7] · GOV.UK Skilled Worker Visa [8] · Canada Express Entry [9] · NEEA China [10]</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+// ── Tooltip Engine ──────────────────────────────────────────
+const tooltip = document.getElementById('tooltip');
+let tooltipTimeout;
+
+function showTooltip(e, title, text) {
+  clearTimeout(tooltipTimeout);
+  tooltip.innerHTML = `<strong>${title}</strong>${text}`;
+  tooltip.classList.add('visible');
+  positionTooltip(e);
+}
+
+function positionTooltip(e) {
+  const tw = 280, th = 120;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + tw > vw - 10) x = e.clientX - tw - 14;
+  if (y + th > vh - 10) y = e.clientY - th - 14;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+
+function hideTooltip() {
+  tooltipTimeout = setTimeout(() => tooltip.classList.remove('visible'), 150);
+}
+
+document.addEventListener('mousemove', e => {
+  if (tooltip.classList.contains('visible')) positionTooltip(e);
+});
+
+// Attach tooltips to data-tip elements
+document.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', e => showTooltip(e, el.dataset.tipTitle || '', el.dataset.tip));
+  el.addEventListener('mouseleave', hideTooltip);
+});
+
+// ── Animate Bars on Load ────────────────────────────────────
+function animateBars() {
+  document.querySelectorAll('.bar-fill').forEach((bar, i) => {
+    const targetWidth = bar.dataset.width;
+    setTimeout(() => {
+      bar.style.width = targetWidth;
+    }, 200 + i * 120);
+  });
+}
+
+// ── Feasibility Matrix Data ─────────────────────────────────
+const matrixData = [
+  {
+    opp: 'B2B RP Expansion',
+    cells: [
+      { val:'H', country:'Bangladesh', tip:'HIGH feasibility. 58,121 baseline — highest B2B RP volume globally. Deep partner relationships, tiered incentives (Bronze→Platinum Plus), GEL platform access. Target: +20% to 69,745 tests.' },
+      { val:'H', country:'Vietnam',    tip:'HIGH feasibility. 30,945 baseline with no channel restrictions. Scale B2B RP network, deploy training portfolio, pilot Affiliate channel. Target: +20% to 37,134 tests.' },
+      { val:'H', country:'Pakistan',   tip:'HIGH feasibility. 14,971 baseline — B2B RP is the ONLY permitted channel due to security restrictions. Focus on satisfaction pain points, enhanced training, co-marketing tools. Target: +20% to 17,965 tests.' },
+      { val:'M', country:'Saudi Arabia', tip:'MEDIUM feasibility. Only 1,106 B2B RP tests — nascent market. Recruit 5-10 university partners. Strong revenue-per-test economics suggest high upside. Target: +20% to 1,327 tests.' },
+      { val:'M', country:'UAE',        tip:'MEDIUM feasibility. 6,886 B2B RP tests alongside 13,103 ITC. Multi-channel complexity requires careful partner conflict management. Optimise B2B RP experience alongside ITC expansion.' },
+      { val:'M', country:'Thailand',   tip:'MEDIUM feasibility. 1,193 B2B RP tests. Expand network in Bangkok. Small market scale requires cost discipline. Prioritise data validation before significant investment.' },
+      { val:'M', country:'Egypt',      tip:'MEDIUM feasibility. Only 223 B2B RP tests — smallest baseline. Revenue TBD. Validate baseline first before B2B RP expansion. Affiliate channel is higher priority for Egypt.' },
+      { val:'L', country:'China',      tip:'LOW feasibility for additional B2B RP expansion. 210,577 combined tests already at scale within NEEA framework. Focus is on funnel optimisation and Affiliate co-marketing within existing NEEA compliance.' },
+    ]
+  },
+  {
+    opp: 'Affiliate Network',
+    cells: [
+      { val:'L', country:'Bangladesh', tip:'LOW feasibility. Security restrictions and existing B2B RP dominance (58,121 tests) make Affiliate activation lower priority. Focus resources on deepening B2B RP partner relationships instead.' },
+      { val:'M', country:'Vietnam',    tip:'MEDIUM feasibility. No channel restrictions — Affiliate pilot is viable. Deploy alongside B2B RP scaling. Use existing portal infrastructure. Market competition and partner quality variability are key risks.' },
+      { val:'L', country:'Pakistan',   tip:'LOW feasibility. Security restrictions limit channel diversification. B2B RP is the only viable channel. Affiliate activation not recommended given regulatory environment.' },
+      { val:'H', country:'Saudi Arabia', tip:'HIGH feasibility. Nascent market with strong revenue-per-test economics. Launch Affiliate network using existing portal infrastructure. Zero-cost onboarding, co-marketing bundles. Target: 10-15 initial agents.' },
+      { val:'M', country:'UAE',        tip:'MEDIUM feasibility. Multi-channel market already has B2B RP + ITC. Affiliate adds complexity but potential. Requires careful channel conflict management to avoid cannibalisation.' },
+      { val:'M', country:'Thailand',   tip:'MEDIUM feasibility. Small market (1,193 tests) but no restrictions. Affiliate pilot could complement B2B RP expansion. Regulatory complexity requires thorough compliance review first.' },
+      { val:'H', country:'Egypt',      tip:'HIGH feasibility. Affiliate is the PRIMARY growth lever for Egypt. Launch pilot with 10-15 agents. Zero-cost onboarding, co-marketing bundles, partnership benefits. Revenue validation is prerequisite.' },
+      { val:'M', country:'China',      tip:'MEDIUM feasibility. Affiliate already active within NEEA framework (combined with B2B RP in 210,577 total). Cannot disaggregate by channel. Optimise via co-marketing assets and funnel improvements.' },
+    ]
+  },
+  {
+    opp: 'ITC Pilot/Growth',
+    cells: [
+      { val:'BLOCKED', country:'Bangladesh', tip:'BLOCKED. Security restrictions explicitly prohibit ITC channel in Bangladesh. No ITC/PTP channels permitted. All growth must come through B2B RP deepening. Do not pursue ITC activation.' },
+      { val:'L', country:'Vietnam',    tip:'LOW feasibility. No ITC activity documented. No explicit restrictions but no verified baseline. Requires significant investment to establish. B2B RP scaling is higher priority for Vietnam.' },
+      { val:'BLOCKED', country:'Pakistan',   tip:'BLOCKED. High-security restrictions explicitly prohibit ITC channel in Pakistan. Zero ITC/PTP permitted. Focus exclusively on B2B RP partner enablement within existing constraints.' },
+      { val:'M', country:'Saudi Arabia', tip:'MEDIUM feasibility. No verified ITC baseline but no explicit restrictions. Market development required before ITC viability. Affiliate and B2B RP are higher priority for nascent Saudi market.' },
+      { val:'H', country:'UAE',        tip:'HIGH feasibility. UAE is the ONLY market with verified ITC baseline (13,103 tests). Expand ITC network, add new test centre locations, optimise scheduling. Logical foundation for PTP pilot. Key competitive advantage.' },
+      { val:'M', country:'Thailand',   tip:'MEDIUM feasibility. ITC pilot subject to regulatory clearance — thorough compliance review required. Bangkok is primary target location. Validate feasibility in Q1 before committing resources in Q3 pilot phase.' },
+      { val:'L', country:'Egypt',      tip:'LOW feasibility. Smallest market (223 tests). Revenue TBD. ITC establishment requires significant infrastructure investment not justified at current scale. Affiliate activation is the right first step.' },
+      { val:'BLOCKED', country:'China', tip:'BLOCKED. China operates exclusively under NEEA framework. NO ITC or PTP channels permitted under any circumstances. All activity must comply with NEEA partnership terms. Monitor policy updates for any changes.' },
+    ]
+  },
+  {
+    opp: 'PTP Optimization',
+    cells: [
+      { val:'BLOCKED', country:'Bangladesh', tip:'BLOCKED. Security restrictions explicitly prohibit PTP channel in Bangladesh. Same restrictions apply as ITC. All growth must come through B2B RP. No PTP activation possible under current security framework.' },
+      { val:'L', country:'Vietnam',    tip:'LOW feasibility. No PTP activity documented. No explicit restrictions but no verified baseline. B2B RP scaling is significantly higher priority. PTP requires institutional partnerships not yet established.' },
+      { val:'BLOCKED', country:'Pakistan',   tip:'BLOCKED. High-security restrictions explicitly prohibit PTP channel in Pakistan. Zero ITC/PTP permitted. Focus exclusively on B2B RP partner enablement. Do not pursue PTP activation.' },
+      { val:'L', country:'Saudi Arabia', tip:'LOW feasibility. Nascent market with only 1,106 B2B RP tests. PTP requires institutional infrastructure not yet present. Affiliate and B2B RP development must precede any PTP consideration.' },
+      { val:'H', country:'UAE',        tip:'HIGH feasibility. UAE has existing ITC infrastructure (13,103 tests) making PTP a logical extension. Target corporate and university clients. PTP volume TBD — data validation is Q1 priority. Pilot in Q3.' },
+      { val:'M', country:'Thailand',   tip:'MEDIUM feasibility. PTP volume TBD pending data validation. Optimise venue baseline once data confirmed. Regulatory complexity requires compliance review. Q1 data validation is prerequisite.' },
+      { val:'L', country:'Egypt',      tip:'LOW feasibility. Smallest market with revenue TBD. PTP requires institutional partnerships not justified at current scale. Validate revenue baseline and launch Affiliate first before considering PTP.' },
+      { val:'BLOCKED', country:'China', tip:'BLOCKED. China operates exclusively under NEEA framework. NO PTP channels permitted. All activity must comply with NEEA partnership terms. PTP activation is not possible under current framework.' },
+    ]
+  },
+  {
+    opp: 'Portal Enhancement',
+    cells: [
+      { val:'H', country:'Bangladesh', tip:'HIGH feasibility. Portal enhancements directly address partner satisfaction pain points identified in 2025 survey. Reduce friction for 58,121 B2B RP tests. Self-service capabilities reduce operational support burden.' },
+      { val:'H', country:'Vietnam',    tip:'HIGH feasibility. Portal improvements support B2B RP scaling from 30,945 baseline. Self-service capabilities enable faster partner onboarding. No restrictions — full portal feature deployment.' },
+      { val:'H', country:'Pakistan',   tip:'HIGH feasibility. Portal is the primary enablement tool given B2B RP-only constraint. Enhanced self-service reduces operational friction. Address satisfaction pain points to improve retention and volume.' },
+      { val:'H', country:'Saudi Arabia', tip:'HIGH feasibility. Portal infrastructure already exists — Affiliate onboarding via portal is zero incremental cost. Self-service capabilities critical for nascent market development at scale.' },
+      { val:'H', country:'UAE',        tip:'HIGH feasibility. Multi-channel market benefits most from portal enhancements. Unified portal for B2B RP + ITC + PTP management. Reduces operational complexity and partner conflict risk.' },
+      { val:'H', country:'Thailand',   tip:'HIGH feasibility. Portal enhancements support all channel types under evaluation. Self-service capabilities reduce operational support burden in small market where cost discipline is critical.' },
+      { val:'H', country:'Egypt',      tip:'HIGH feasibility. Portal is the primary tool for Affiliate onboarding (10-15 agents). Zero-cost infrastructure already in place. Self-service capabilities enable market entry without significant operational investment.' },
+      { val:'H', country:'China',      tip:'HIGH feasibility. Portal enhancements support NEEA framework optimisation. Improve registration funnel, reduce friction for 210,577 combined tests. Co-marketing asset distribution via portal.' },
+    ]
+  },
+  {
+    opp: 'Training Portfolio',
+    cells: [
+      { val:'H', country:'Bangladesh', tip:'HIGH feasibility. Global IELTS Teacher Training portfolio directly addresses partner capability gaps. GEL IELTS Educator platform access as incentive. Existing assets at documented pricing — zero incremental cost.' },
+      { val:'H', country:'Vietnam',    tip:'HIGH feasibility. Training portfolio deployment supports B2B RP scaling. Teacher training seminars and online resources. Existing assets deployable immediately. Key differentiator vs competitor programs.' },
+      { val:'H', country:'Pakistan',   tip:'HIGH feasibility. Training is a key lever for B2B RP-only market. Improve partner quality and satisfaction. GEL platform access as incentive. Addresses competitive pressure from alternative test providers.' },
+      { val:'H', country:'Saudi Arabia', tip:'HIGH feasibility. Training portfolio supports nascent market development. Prep resource access as Affiliate onboarding incentive. Localised co-marketing assets. Builds partner capability from ground up.' },
+      { val:'H', country:'UAE',        tip:'HIGH feasibility. Training supports multi-channel partner network. Teacher training for B2B RP partners, ITC staff training, PTP venue preparation. Comprehensive capability building across all channel types.' },
+      { val:'H', country:'Thailand',   tip:'HIGH feasibility. Training portfolio deployable immediately at zero incremental cost. Supports B2B RP expansion and ITC pilot preparation. Cost discipline critical — existing assets maximise ROI.' },
+      { val:'H', country:'Egypt',      tip:'HIGH feasibility. Training assets support Affiliate onboarding. Zero-cost deployment of existing portfolio. Prep resource access as partnership benefit. Builds market credibility in early-stage market.' },
+      { val:'H', country:'China',      tip:'HIGH feasibility. Teacher training portfolio enhances NEEA partner capabilities. GEL IELTS Educator platform adoption by partners per commercial model. Key lever for funnel optimisation within NEEA framework.' },
+    ]
+  },
+  {
+    opp: 'Compliance Framework',
+    cells: [
+      { val:'H', country:'Bangladesh', tip:'HIGH feasibility. UK AQF compliance framework applicable. Agent training and Good Practice Guide adherence. Positions British Council as governance leader. Addresses security volatility risk through structured compliance.' },
+      { val:'H', country:'Vietnam',    tip:'HIGH feasibility. UK AQF compliance framework deployable. No restrictions. National Code of Ethical Practice alignment. Differentiates from competitors lacking formal compliance frameworks.' },
+      { val:'H', country:'Pakistan',   tip:'HIGH feasibility. Compliance framework critical given security restrictions. UK AQF alignment demonstrates governance leadership. Agent management evidence required for UK student sponsor register compliance.' },
+      { val:'H', country:'Saudi Arabia', tip:'HIGH feasibility. Compliance framework supports nascent market development. UK AQF standards provide credibility for new Affiliate partners. Governance structure essential for market entry.' },
+      { val:'H', country:'UAE',        tip:'HIGH feasibility. Multi-channel market requires robust compliance framework. UK AQF alignment across B2B RP, ITC, and PTP channels. Governance leadership vs competitors is key differentiator.' },
+      { val:'H', country:'Thailand',   tip:'HIGH feasibility. Compliance framework essential for ITC regulatory clearance. UK AQF standards support regulatory approval process. Thorough compliance review is Q1 prerequisite for Q3 ITC pilot.' },
+      { val:'H', country:'Egypt',      tip:'HIGH feasibility. Compliance framework supports Affiliate onboarding. UK AQF standards provide credibility in early-stage market. National Code adherence as partnership requirement from day one.' },
+      { val:'H', country:'China',      tip:'HIGH feasibility. Compliance framework operates within NEEA partnership terms. UK AQF standards applicable to non-NEEA aspects. Governance documentation supports NEEA relationship management.' },
+    ]
+  },
+];
+
+// Build matrix
+const tbody = document.getElementById('matrixBody');
+matrixData.forEach(row => {
+  const tr = document.createElement('tr');
+  const tdOpp = document.createElement('td');
+  tdOpp.textContent = row.opp;
+  tr.appendChild(tdOpp);
+
+  row.cells.forEach(cell => {
+    const td = document.createElement('td');
+    const v = cell.val;
+    td.textContent = v === 'BLOCKED' ? '🚫' : v;
+    td.className = v === 'H' ? 'cell-H' : v === 'M' ? 'cell-M' : v === 'L' ? 'cell-L' : 'cell-BLK';
+    if (v === 'BLOCKED') td.title = 'BLOCKED';
+
+    // Tooltip
+    const tipTitle = `${row.opp} — ${cell.country}`;
+    const tipText  = cell.tip;
+    td.addEventListener('mouseenter', e => showTooltip(e, tipTitle, tipText));
+    td.addEventListener('mouseleave', hideTooltip);
+    tr.appendChild(td);
+  });
+
+  tbody.appendChild(tr);
+});
+
+// ── Intersection Observer for bar animation ─────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateBars();
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+
+const barsSection = document.getElementById('countryBars');
+if (barsSection) observer.observe(barsSection);
+
+// ── Animated number counter ─────────────────────────────────
+function animateCounter(el, target, duration = 1500, prefix = '', suffix = '') {
+  const start = performance.now();
+  const isFloat = target % 1 !== 0;
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = isFloat ? (target * eased).toFixed(1) : Math.round(target * eased);
+    el.textContent = prefix + current.toLocaleString() + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// Observe KPI cards for counter animation
+const kpiObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const card = entry.target;
+      const valEl = card.querySelector('.kpi-value');
+      if (!valEl || card.dataset.animated) return;
+      card.dataset.animated = '1';
+      const text = valEl.textContent.trim();
+      if (text === '£208.1M') animateCounter(valEl, 208.1, 1500, '£', 'M');
+      else if (text === '321,898') animateCounter(valEl, 321898, 1500);
+      else if (text === '210,577') animateCounter(valEl, 210577, 1500);
+      else if (text === '13,103') animateCounter(valEl, 13103, 1500);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.kpi-card').forEach(c => kpiObserver.observe(c));
+</script>
+</body>
+</html>
